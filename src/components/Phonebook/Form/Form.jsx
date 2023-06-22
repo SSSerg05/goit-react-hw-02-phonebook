@@ -18,7 +18,8 @@ export class Form extends Component {
 
   // Отвечает за обновление состояния
   handleChange = e => {
-    this.setState({ name: e.target.value });
+    const {name, value} = e.target
+    this.setState({ [name]: value });
   };
 
   // // Вызывается при отправке формы
