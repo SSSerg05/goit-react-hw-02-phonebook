@@ -7,7 +7,7 @@ export const App = () => {
   return (
     <Container>
       <Section title={"Please leave feedback"}>
-        <Counter />
+       
       </Section>
     </Container>
   );
