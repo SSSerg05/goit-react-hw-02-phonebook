@@ -10,6 +10,7 @@ export const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: lightsteelblue;
 
   &:nth-of-type(odd) {
     background-color: lightcyan;
