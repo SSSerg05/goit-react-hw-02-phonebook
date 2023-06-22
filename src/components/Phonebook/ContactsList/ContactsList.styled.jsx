@@ -9,8 +9,9 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
-  
-  &:nth-child(odd) {
+  justify-content: space-between;
+
+  &:nth-of-type(odd) {
     background-color: lightcyan;
   }
 `
@@ -25,4 +26,5 @@ export const ItemButton = styled.button`
   height: 24px;
   margin: 0;
   padding: 0;
+  margin-right: 10px;
 `

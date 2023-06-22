@@ -8,7 +8,7 @@ export const ContactsList = ({ contacts, onDelete }) => {
       {contacts.map(({ id, name, phone }) =>
         <ListItem key={id}>
           <ItemText>{name + ': ' + phone}</ItemText>
-          <ItemButton onClick={ onDelete }>Delete</ItemButton>
+          <ItemButton onClick={ () => onDelete(id) }>Delete</ItemButton>
         </ListItem>)}
     </List>
   );

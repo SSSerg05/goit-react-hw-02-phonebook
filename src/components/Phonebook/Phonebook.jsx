@@ -42,7 +42,10 @@ export class Phonebook extends Component {
   // };
 
   // delete item without ContactsList
-  onDeleteItem = () => { 
+  onDeleteItem = (id) => { 
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== id),
+    }))
 
   }
 
@@ -71,15 +74,15 @@ export class Phonebook extends Component {
             </label>
 
             {/* <Button as="submit">Add contact {name}</Button> */}
-             <button type="submit">Sign up as {name}</button>
+             <button type="submit">Sign up as { name }</button>
           </form>
           
         </DeskPhonebook>
         
         <Section title={"Contacts"}>
           <ContactsList
-            contacts={contacts}
-            onDelete={this.onDeleteItem}/>
+            contacts={ contacts }
+            onDelete={ this.onDeleteItem }/>
         </Section>
       
       </Section>
