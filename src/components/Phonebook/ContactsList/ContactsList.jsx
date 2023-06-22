@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types'; // ES6'
-import { List } from './ContactsList.styled';
+import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
 
 
 export const ContactsList = ({ contacts }) => { 
   return (
     <List>
       {contacts.map(({ id, name, phone }) =>
-        <li key={ id }>{ name + ': ' + phone }</li>)}
+        <ListItem key={id}>
+          <ItemText>{name + ': ' + phone}</ItemText>
+          <ItemButton>Delete</ItemButton>
+        </ListItem>)}
     </List>
   );
 }
