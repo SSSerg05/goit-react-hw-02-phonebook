@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'; // ES6'
 import { nanoid } from 'nanoid'
 
 import { Section } from "../Section/Section";
+import { ContactsList } from "./ContactsList/ContactsList";
 import { DeskPhonebook, Button } from "./Phonebook.styled";
 
 export class Phonebook extends Component {
@@ -14,7 +15,12 @@ export class Phonebook extends Component {
   };
   
   state = {
-    contacts: [],
+    contacts: [
+      {id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', phone: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', phone: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', phone: '227-91-26'},
+    ],
     name: ''
   } 
 
@@ -62,14 +68,8 @@ export class Phonebook extends Component {
           </form>
           
         </DeskPhonebook>
-        <div>
-          {
-            console.log(this.state.contacts)
-            // this.state.contacts.map(item => 
-            //   <p>{item.id + ' | ' + item.name}</p>
-            // )
-          }
-        </div>
+        
+        <ContactsList contacts={contacts} />
 
       </Section>
     );
