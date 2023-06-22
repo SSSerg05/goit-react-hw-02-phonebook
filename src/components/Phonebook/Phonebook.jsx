@@ -1,17 +1,17 @@
 // library
 import React, { Component } from "react";
 import PropTypes from 'prop-types'; // ES6'
-import { nanoid } from 'nanoid'
 
 // components
 import { Section } from "../Section/Section";
 import { ContactsList } from "./ContactsList/ContactsList";
+import { Form } from "./Form/Form";
 
 // data
 import contactsInitial from "../../data/contactsInitial.json";
 
 // style
-import { DeskPhonebook, Button } from "./Phonebook.styled";
+import { DeskPhonebook } from "./Phonebook.styled";
 
 
 export class Phonebook extends Component {
@@ -20,26 +20,20 @@ export class Phonebook extends Component {
   static propTypes = {
     name: PropTypes.string,
     contact: PropTypes.array,
+    phone: PropTypes.string,
   };
   
   state = {
     contacts: contactsInitial,
-    name: ''
+    name: '',
+    phone: '',
   } 
 
-  // Отвечает за обновление состояния
-  handleChange = e => {
-    this.setState({ name: e.target.value });
-  };
 
-  // // Вызывается при отправке формы
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   console.log(`Signed up as: ${this.state.name}`);
+  onSubmitForm = () => {
+    console.log(this.state);
+  }
 
-  //   // Проп который передается форме для вызова при сабмите
-  //   this.props.onSubmit({ ...this.state });
-  // };
 
   // delete item without ContactsList
   onDeleteItem = (id) => { 
@@ -51,31 +45,13 @@ export class Phonebook extends Component {
 
 
   render() {
-    const { name, contacts } = this.state;
-    const id = nanoid();
+    const { contacts } = this.state;
 
     return (
       <Section>
         Phonebook Component
         <DeskPhonebook>
-          <form onSubmit={() => this.handleSubmit({id, name})}>
-            <label>
-              Name
-
-              <input
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-                value={ name }
-                onChange={ this.handleChange }
-              />
-            </label>
-
-            {/* <Button as="submit">Add contact {name}</Button> */}
-             <button type="submit">Sign up as { name }</button>
-          </form>
+          <Form onSubmit={ this.onSubmitForm }></Form>
           
         </DeskPhonebook>
         
