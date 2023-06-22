@@ -4,26 +4,19 @@
 
 https://www.npmjs.com/package/prop-types
 
-npm install --save prop-types
-
---> use in js/jsx
-import PropTypes from 'prop-types';
+- npm install --save prop-types
+- --> use in js/jsx
+- import PropTypes from 'prop-types';
 
 ## Emotion
 
 https://emotion.sh/docs/install
-npm install --save @emotion/react
-npm install --save @emotion/styled
---> use in js/jsx
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
 
-## Notiflix
-
-https://github.com/notiflix/Notiflix#readme
-npm i notiflix
---> use in js/jsx
-import Notiflix from 'notiflix';
+- npm install --save @emotion/react
+- npm install --save @emotion/styled
+- --> use in js/jsx
+- import { css } from '@emotion/react'
+- import styled from '@emotion/styled'
 
 ## GitHub - gh-pages
 
