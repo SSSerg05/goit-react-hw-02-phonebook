@@ -23,8 +23,8 @@ export class Form extends Component {
   };
 
   // // Вызывается при отправке формы
-  handleSubmit = evt => {
-    evt.preventDefault();
+  handleSubmit = e => {
+    e.preventDefault();
     console.log(`Signed up as: ${this.state}`);
 
     // Проп который передается форме для вызова при сабмите
