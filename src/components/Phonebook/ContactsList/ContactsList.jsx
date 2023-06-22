@@ -6,7 +6,7 @@ export const ContactsList = ({ contacts }) => {
   return (
     <List>
       {contacts.map(({ id, name, phone }) =>
-        <li key={ id }>{ name + ' | ' + phone }</li>)}
+        <li key={ id }>{ name + ': ' + phone }</li>)}
     </List>
   );
 }
@@ -14,9 +14,9 @@ export const ContactsList = ({ contacts }) => {
 ContactsList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      phone: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 }
