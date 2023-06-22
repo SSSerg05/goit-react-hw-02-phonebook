@@ -41,6 +41,10 @@ export class Phonebook extends Component {
   //   this.props.onSubmit({ ...this.state });
   // };
 
+  // delete item without ContactsList
+  onDeleteItem = () => { 
+
+  }
 
 
   render() {
@@ -73,7 +77,9 @@ export class Phonebook extends Component {
         </DeskPhonebook>
         
         <Section title={"Contacts"}>
-          <ContactsList contacts={contacts} />
+          <ContactsList
+            contacts={contacts}
+            onDelete={this.onDeleteItem}/>
         </Section>
       
       </Section>
