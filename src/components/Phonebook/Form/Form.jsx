@@ -28,8 +28,12 @@ export class Form extends Component {
     console.log(`Signed up as: ${this.state}`);
 
     // Проп который передается форме для вызова при сабмите
-    this.props.onSubmit({ ...this.state });
+    this.props.onSubmit(this.state); ///{ ...this.state });
   };
+
+  reset = () => {
+    this.setState({name: "", phone: ""})
+  }
 
   render() {
     const { name, phone } = this.state;

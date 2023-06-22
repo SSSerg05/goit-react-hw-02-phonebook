@@ -30,8 +30,8 @@ export class Phonebook extends Component {
   } 
 
 
-  onSubmitForm = () => {
-    console.log(this.state);
+  onSubmitForm = ({...data}) => {
+    this.setState(data);
   }
 
 
