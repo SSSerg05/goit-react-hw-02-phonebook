@@ -1,10 +1,18 @@
+// library
 import React, { Component } from "react";
 import PropTypes from 'prop-types'; // ES6'
 import { nanoid } from 'nanoid'
 
+// components
 import { Section } from "../Section/Section";
 import { ContactsList } from "./ContactsList/ContactsList";
+
+// data
+import contactsInitial from "../../data/contactsInitial.json";
+
+// style
 import { DeskPhonebook, Button } from "./Phonebook.styled";
+
 
 export class Phonebook extends Component {
   static defaultProps = {};
@@ -15,12 +23,7 @@ export class Phonebook extends Component {
   };
   
   state = {
-    contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', phone: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', phone: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', phone: '227-91-26'},
-    ],
+    contacts: contactsInitial,
     name: ''
   } 
 
@@ -69,8 +72,10 @@ export class Phonebook extends Component {
           
         </DeskPhonebook>
         
-        <ContactsList contacts={contacts} />
-
+        <Section title={"Contacts"}>
+          <ContactsList contacts={contacts} />
+        </Section>
+      
       </Section>
     );
   }
