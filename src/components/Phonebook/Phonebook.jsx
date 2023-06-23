@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 // components
 import { Section } from "../Section/Section";
 import { ContactsList } from "./ContactsList/ContactsList";
+import { Filter } from "./Filter/Filter";
 import { Form } from "./Form/Form";
 
 // data
@@ -16,18 +17,24 @@ import { DeskPhonebook } from "./Phonebook.styled";
 
 
 export class Phonebook extends Component {
-  static defaultProps = {};
+  static defaultProps = {
+    filter: '',
+  };
 
   static propTypes = {
-    name: PropTypes.string,
-    contact: PropTypes.array,
-    phone: PropTypes.string,
+    contact: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    filter: PropTypes.string,
   };
   
   state = {
     contacts: contactsInitial,
-    name: '',
-    phone: '',
+    filter: '',
   } 
 
   createId = () => { return nanoid(); }
@@ -36,24 +43,29 @@ export class Phonebook extends Component {
     const contact = { id: this.createId(), name: data.name, phone: data.phone };
     
     this.setState(({ contacts }) => ({
-      name: data.name,
-      phone: data.phone,
       contacts: [contact, ...contacts],
     }))
   }
 
+  // Filter
+  onChangeFilter = e => { 
+    this.setState({ filter: e.currentTarget.value });
+  }
 
   // delete item without ContactsList
   onDeleteItem = (id) => { 
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(item => item.id !== id),
+    this.setState(({ contacts })  => ({
+      contacts: contacts.filter(item => item.id !== id),
     }))
-
   }
 
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+
+    const nomaliseFilter = filter.toLocaleLowerCase();
+    const outFilter = contacts.filter(
+      item => item.name.toLocaleLowerCase().includes(nomaliseFilter));
 
     return (
       <Section>
@@ -63,9 +75,16 @@ export class Phonebook extends Component {
           
         </DeskPhonebook>
         
+        <Section>
+          <Filter
+              value = { filter }
+              onFilter={this.onChangeFilter}>
+          </Filter>
+        </Section>
+        
         <Section title={"Contacts"}>
           <ContactsList
-            contacts={ contacts }
+            contacts={ outFilter }
             onDelete={ this.onDeleteItem }/>
         </Section>
       
