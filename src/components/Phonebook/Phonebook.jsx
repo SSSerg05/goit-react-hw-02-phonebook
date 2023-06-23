@@ -34,15 +34,12 @@ export class Phonebook extends Component {
 
   onSubmitForm = ({ ...data }) => {
     const contact = { id: this.createId(), name: data.name, phone: data.phone };
-    console.log(contact);
     
-    this.setState({ name: data.name, phone: data.phone });
-    console.log(this.state);
-    
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
+    this.setState(({ contacts }) => ({
+      name: data.name,
+      phone: data.phone,
+      contacts: [contact, ...contacts],
     }))
-    console.log(this.state);
   }
 
 
