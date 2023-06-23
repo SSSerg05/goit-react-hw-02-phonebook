@@ -52,6 +52,14 @@ export class Phonebook extends Component {
     this.setState({ filter: e.currentTarget.value });
   }
 
+  getVisibleContacts = () => { 
+    const { contacts, filter } = this.state;
+
+    const nomaliseFilter = filter.toLocaleLowerCase();
+    return contacts.filter(
+      item => item.name.toLocaleLowerCase().includes(nomaliseFilter));
+  }
+
   // delete item without ContactsList
   onDeleteItem = (id) => { 
     this.setState(({ contacts })  => ({
@@ -61,11 +69,8 @@ export class Phonebook extends Component {
 
 
   render() {
-    const { contacts, filter } = this.state;
-
-    const nomaliseFilter = filter.toLocaleLowerCase();
-    const outFilter = contacts.filter(
-      item => item.name.toLocaleLowerCase().includes(nomaliseFilter));
+    const { filter } = this.state;
+    const outFilter = this.getVisibleContacts();
 
     return (
       <Section>
