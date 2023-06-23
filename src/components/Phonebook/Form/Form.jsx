@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { nanoid } from 'nanoid'
 
 
 export class Form extends Component {
@@ -12,9 +11,10 @@ export class Form extends Component {
   };
 
   state = {
-    name: "",
-    phone: "",
+    name : "",
+    phone : "",
   }
+ 
 
   // Отвечает за обновление состояния
   handleChange = e => {
@@ -25,19 +25,21 @@ export class Form extends Component {
   // // Вызывается при отправке формы
   handleSubmit = e => {
     e.preventDefault();
-    console.log(`Signed up as: ${this.state}`);
+    // console.log(`Signed up as: ${this.state}`);
 
     // Проп который передается форме для вызова при сабмите
     this.props.onSubmit(this.state); ///{ ...this.state });
+    
+    this.reset();
   };
-
+  
+  // clear Form
   reset = () => {
     this.setState({name: "", phone: ""})
   }
 
   render() {
     const { name, phone } = this.state;
-    const id = nanoid();
 
     return (
       <form onSubmit={ this.handleSubmit }>

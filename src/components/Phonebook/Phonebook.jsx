@@ -1,6 +1,7 @@
 // library
 import React, { Component } from "react";
 import PropTypes from 'prop-types'; // ES6'
+import { nanoid } from "nanoid";
 
 // components
 import { Section } from "../Section/Section";
@@ -29,9 +30,19 @@ export class Phonebook extends Component {
     phone: '',
   } 
 
+  createId = () => { return nanoid(); }
 
-  onSubmitForm = ({...data}) => {
-    this.setState(data);
+  onSubmitForm = ({ ...data }) => {
+    const contact = { id: this.createId(), name: data.name, phone: data.phone };
+    console.log(contact);
+    
+    this.setState({ name: data.name, phone: data.phone });
+    console.log(this.state);
+    
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }))
+    console.log(this.state);
   }
 
 
