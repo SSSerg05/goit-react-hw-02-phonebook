@@ -22,13 +22,13 @@ export class Phonebook extends Component {
   };
 
   static propTypes = {
-    contact: PropTypes.arrayOf(
+    contacts: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         phone: PropTypes.string.isRequired,
-      }).isRequired
-    ).isRequired,
+      })
+    ),
     filter: PropTypes.string,
   };
   
@@ -40,10 +40,10 @@ export class Phonebook extends Component {
   createId = () => { return nanoid(); }
 
   onSubmitForm = ({ ...data }) => {
-    const contact = { id: this.createId(), name: data.name, phone: data.phone };
+    const newContact = { id: this.createId(), name: data.name, phone: data.phone };
     
     this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
+      contacts: [newContact, ...contacts],
     }))
   }
 
