@@ -23,9 +23,23 @@ export const ItemText = styled.p`
 `
 export const ItemButton = styled.button`
   display: inline-block;
+  outline: 1px solid black;
+  border: none;
   min-width: 75px;
   height: 24px;
   margin: 0;
   padding: 0;
   margin-right: 10px;
+  border-radius: 5px;
+
+  &:hover, &:active {
+    cursor: pointer;
+    background-color: cyan;
+    border: 1px solit black;
+  }
+
+  &:active {
+    background-color: tomato;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);;
+  }
 `

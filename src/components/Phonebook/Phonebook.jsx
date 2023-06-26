@@ -42,9 +42,19 @@ export class Phonebook extends Component {
   onSubmitForm = ({ ...data }) => {
     const newContact = { id: this.createId(), name: data.name, phone: data.phone };
     
+    if (this.isFound(data.name)) { 
+      alert(`${data.name} - find in phonebook base`)
+      return;
+    }
+
     this.setState(({ contacts }) => ({
       contacts: [newContact, ...contacts],
     }))
+  }
+
+  isFound = (name) => { 
+    const findName = name.trim().toLocaleLowerCase();
+    return this.state.contacts.find(item => item.name.toLocaleLowerCase() === findName)
   }
 
   // Filter
@@ -73,27 +83,22 @@ export class Phonebook extends Component {
     const outFilter = this.getVisibleContacts();
 
     return (
-      <Section>
-        Phonebook Component
         <DeskPhonebook>
           <Form onSubmit={ this.onSubmitForm }></Form>
           
+          <Section>
+            <Filter
+                value = { filter }
+                onFilter={this.onChangeFilter}>
+            </Filter>
+          </Section>
+        
+          <Section title={"Contacts"}>
+            <ContactsList
+              contacts={ outFilter }
+              onDelete={ this.onDeleteItem }/>
+          </Section>
         </DeskPhonebook>
-        
-        <Section>
-          <Filter
-              value = { filter }
-              onFilter={this.onChangeFilter}>
-          </Filter>
-        </Section>
-        
-        <Section title={"Contacts"}>
-          <ContactsList
-            contacts={ outFilter }
-            onDelete={ this.onDeleteItem }/>
-        </Section>
-      
-      </Section>
     );
   }
 }

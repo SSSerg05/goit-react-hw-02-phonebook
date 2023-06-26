@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types'; // ES6'
-import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
 import { nanoid } from 'nanoid';
+
+import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
+import { Button } from '../Form/Form.styled';
+
 
 
 export const ContactsList = ({ contacts, onDelete }) => { 

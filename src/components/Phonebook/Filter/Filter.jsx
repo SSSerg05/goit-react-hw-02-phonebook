@@ -1,13 +1,19 @@
-
+import { FieldBox, FieldLabel, FieldPosition, FieldInput } from "../Form/Form.styled"
 
 export const Filter = ({ value, onFilter }) => { 
 
   return (
-    <div>
-      <label>Filter name
-        <input type="text" value={ value } onChange={ onFilter }></input>
-      </label>
-    </div>
+    <FieldBox>
+      <FieldLabel>Filter name
+        <FieldPosition>
+          <FieldInput
+            type="text"
+            value={value}
+            onChange={onFilter}
+          />
+        </FieldPosition>
+      </FieldLabel>
+    </FieldBox>
   );
   
 }

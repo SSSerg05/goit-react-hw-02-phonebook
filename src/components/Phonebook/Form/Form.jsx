@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-import { FieldBox, FieldLabel, FieldPosition, FieldInput } from "./Form.styled"
+import { FieldBox, FieldLabel, FieldPosition, FieldInput, Button } from "./Form.styled"
 
 export class Form extends Component {
   static defaultProps = {};
@@ -78,7 +78,7 @@ export class Form extends Component {
           </FieldLabel>
         </FieldBox>
 
-        <button type="submit">Sign up as { name }</button>
+        <Button type="submit">Save</Button>
       </form>
     )
   }
