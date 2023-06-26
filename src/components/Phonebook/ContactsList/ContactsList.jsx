@@ -12,6 +12,7 @@ export const ContactsList = ({ contacts, onDelete }) => {
           <ItemText>{name + ': ' + phone}</ItemText>
           <ItemButton onClick={ () => onDelete(id) }>Delete</ItemButton>
         </ListItem>)}
+      {contacts.length === 0 && <p>Sorry, you dont have more contacts</p>}
     </List>
   );
 }
