@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'; // ES6'
-import { nanoid } from 'nanoid';
 
 import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
-import { Button } from '../Form/Form.styled';
 
 
 
