@@ -4,7 +4,7 @@ export const Filter = ({ value, onFilter }) => {
 
   return (
     <FieldBox>
-      <FieldLabel>Filter name
+      <FieldLabel>Find contacts by name
         <FieldPosition>
           <FieldInput
             type="text"

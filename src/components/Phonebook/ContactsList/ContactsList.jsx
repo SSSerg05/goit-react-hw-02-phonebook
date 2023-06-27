@@ -7,9 +7,9 @@ import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
 export const ContactsList = ({ contacts, onDelete }) => { 
   return (
     <List>
-      {contacts.map(({ id, name, phone }) =>
+      {contacts.map(({ id, name, number }) =>
         <ListItem key={id}>
-          <ItemText>{name + ': ' + phone}</ItemText>
+          <ItemText>{name + ': ' + number}</ItemText>
           <ItemButton onClick={ () => onDelete(id) }>Delete</ItemButton>
         </ListItem>)}
       {contacts.length === 0 && <p>Sorry, you dont have more contacts</p>}
@@ -22,7 +22,7 @@ ContactsList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 }

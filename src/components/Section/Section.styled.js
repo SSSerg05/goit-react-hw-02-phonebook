@@ -8,5 +8,6 @@ export const Title = styled.h3`
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.05rem;
+  text-align: center;
 `
 

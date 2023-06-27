@@ -26,7 +26,7 @@ export class Phonebook extends Component {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        phone: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
       })
     ),
     filter: PropTypes.string,
@@ -40,10 +40,10 @@ export class Phonebook extends Component {
   createId = () => { return nanoid(); }
 
   onSubmitForm = ({ ...data }) => {
-    const newContact = { id: this.createId(), name: data.name, phone: data.phone };
+    const newContact = { id: this.createId(), name: data.name, number: data.number };
     
     if (this.isFound(data.name)) { 
-      alert(`${data.name} - find in phonebook base`)
+      alert(`${data.name} - find in numberbook base`)
       return;
     }
 
@@ -84,19 +84,22 @@ export class Phonebook extends Component {
 
     return (
         <DeskPhonebook>
-          <Form onSubmit={ this.onSubmitForm }></Form>
-          
           <Section>
+            <Form
+             onSubmit={this.onSubmitForm}
+          />
+          
             <Filter
-                value = { filter }
-                onFilter={this.onChangeFilter}>
-            </Filter>
+              value = { filter }
+              onFilter={this.onChangeFilter}
+            />
           </Section>
         
           <Section title={"Contacts"}>
             <ContactsList
               contacts={ outFilter }
-              onDelete={ this.onDeleteItem }/>
+              onDelete={this.onDeleteItem}
+            />
           </Section>
         </DeskPhonebook>
     );
