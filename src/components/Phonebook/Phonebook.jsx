@@ -1,6 +1,5 @@
 // library
 import React, { Component } from "react";
-import PropTypes from 'prop-types'; // ES6'
 import { nanoid } from "nanoid";
 
 // components
@@ -17,44 +16,32 @@ import { DeskPhonebook } from "./Phonebook.styled";
 
 
 export class Phonebook extends Component {
-  static defaultProps = {
-    filter: '',
-  };
 
-  static propTypes = {
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ),
-    filter: PropTypes.string,
-  };
-  
   state = {
     contacts: contactsInitial,
     filter: '',
-  } 
+  }
 
   createId = () => { return nanoid(); }
 
-  onSubmitForm = ({ ...data }) => {
-    const newContact = { id: this.createId(), name: data.name, number: data.number };
-    
-    if (this.isFound(data.name)) { 
-      alert(`${data.name} - find in numberbook base`)
+  onSubmitForm = (contact) => {
+
+    if (this.isFound(contact.name)) { 
+      alert(`${contact.name} - find in numberbook base`);
       return;
     }
 
+    const newContact = { id: this.createId(), ...contact };
     this.setState(({ contacts }) => ({
       contacts: [newContact, ...contacts],
     }))
   }
 
-  isFound = (name) => { 
-    const findName = name.trim().toLocaleLowerCase();
-    return this.state.contacts.find(item => item.name.toLocaleLowerCase() === findName)
+  isFound = (name) => {
+    const { contacts } = this.state;
+    const findName = name.trim().toLowerCase();
+
+    return contacts.some(item => item.name.toLowerCase() === findName)
   }
 
   // Filter
@@ -64,15 +51,15 @@ export class Phonebook extends Component {
 
   getVisibleContacts = () => { 
     const { contacts, filter } = this.state;
+    const nomaliseFilter = filter.toLowerCase();
 
-    const nomaliseFilter = filter.toLocaleLowerCase();
     return contacts.filter(
-      item => item.name.toLocaleLowerCase().includes(nomaliseFilter));
+      item => item.name.toLowerCase().includes(nomaliseFilter));
   }
 
   // delete item without ContactsList
   onDeleteItem = (id) => { 
-    this.setState(({ contacts })  => ({
+    this.setState(({ contacts }) => ({
       contacts: contacts.filter(item => item.id !== id),
     }))
   }
@@ -83,25 +70,27 @@ export class Phonebook extends Component {
     const outFilter = this.getVisibleContacts();
 
     return (
-        <DeskPhonebook>
-          <Section>
-            <Form
-             onSubmit={this.onSubmitForm}
+      <DeskPhonebook>
+        <Section title={"Phonebook"}>
+          <Form
+           onSubmit={this.onSubmitForm}
           />
-          
-            <Filter
-              value = { filter }
-              onFilter={this.onChangeFilter}
-            />
-          </Section>
+        </Section>
         
-          <Section title={"Contacts"}>
-            <ContactsList
-              contacts={ outFilter }
-              onDelete={this.onDeleteItem}
-            />
-          </Section>
-        </DeskPhonebook>
+        <Section>
+          <Filter
+            value = { filter }
+            onFilter={this.onChangeFilter}
+          />
+        </Section>
+      
+        <Section title={"Contacts"}>
+          <ContactsList
+            contacts={ outFilter }
+            onDelete={this.onDeleteItem}
+          />
+        </Section>
+      </DeskPhonebook>
     );
   }
 }

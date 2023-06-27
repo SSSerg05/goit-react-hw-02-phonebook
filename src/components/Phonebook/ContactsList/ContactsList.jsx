@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types'; // ES6'
-
 import { List, ListItem, ItemText, ItemButton } from './ContactsList.styled';
 
 
-
 export const ContactsList = ({ contacts, onDelete }) => { 
+  
+  if (!contacts.length) {
+    return (
+      <p>Sorry, you don't have more contacts</p>
+    )
+  }
+
+
   return (
     <List>
-      {contacts.map(({ id, name, number }) =>
-        <ListItem key={id}>
-          <ItemText>{name + ': ' + number}</ItemText>
-          <ItemButton onClick={ () => onDelete(id) }>Delete</ItemButton>
-        </ListItem>)}
-      {contacts.length === 0 && <p>Sorry, you dont have more contacts</p>}
+      {
+        contacts.map(({ id, name, number }) =>
+          <ListItem key={id}>
+            <ItemText>{name + ': ' + number}</ItemText>
+            <ItemButton onClick={() => onDelete(id)}>Delete</ItemButton>
+          </ListItem>)
+      }
     </List>
   );
 }
